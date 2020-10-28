@@ -10,3 +10,7 @@ More details in Medium article: https://aruno14.medium.com/very-simple-emotion-r
 * /
 * /train_emotion.py
 * /emotions/[test, train]/[angry, disgust, fear, happy, neutral, sad, surprise]
+
+## Model
+* Input size: (48, 48, 1)
+* Accuracy: 0.5658
