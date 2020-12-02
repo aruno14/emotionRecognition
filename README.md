@@ -23,3 +23,9 @@ More details in Medium article: https://aruno14.medium.com/very-simple-emotion-r
 4. Run `train_emotion.py`
 5. Add a face file named `test.jpg`
 6. Run `predict_emotion.py`
+
+## Convert to TensorFlowLite
+`python3 convert2tflite.py --model_folder=model_emotion/ --output=model_emotion.tflite`
+
+## Convert to TensorFlowJS (with quantization)
+`tensorflowjs_converter model_emotion/ quantized_model_emotions/ --input_format tf_saved_model --output_format tfjs_graph_model --quantize_float16`
