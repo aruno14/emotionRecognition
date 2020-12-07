@@ -1,6 +1,5 @@
 import tensorflow as tf
 from tensorflow.keras.models import load_model
-import tensorflowjs as tfjs
 import argparse
 
 parser = argparse.ArgumentParser(description="Convert model to tflite", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
