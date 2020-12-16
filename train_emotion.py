@@ -8,6 +8,7 @@ image_size = (48, 48)
 batch_size = 32
 epochs = 15
 model_name = "model_emotion"
+labels = ['angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise']
 
 train_datagen = ImageDataGenerator(rescale=1./255, validation_split=0.2, horizontal_flip=True)
 test_datagen = ImageDataGenerator(rescale=1./255)
@@ -33,11 +34,11 @@ if os.path.exists(model_name):
     print("Load: " + model_name)
     classifier = load_model(model_name)
 else:
-    classifier = tf.keras.applications.mobilenet_v2.MobileNetV2(include_top=True, weights=None, input_tensor=None, input_shape=image_size + (1,), pooling=None, classes=7)
+    classifier = tf.keras.applications.mobilenet_v2.MobileNetV2(include_top=True, weights=None, input_tensor=None, input_shape=image_size + (1,), pooling=None, classes=len(labels))
     classifier.compile(loss='categorical_crossentropy', metrics=['accuracy'])
 
-history = model.fit(train_generator, steps_per_epoch=train_generator.samples//batch_size, epochs=epochs, validation_data=validation_generator, validation_steps=validation_generator.samples//batch_size)
-model.save(model_name)
+history = classifier.fit(train_generator, steps_per_epoch=train_generator.samples//batch_size, epochs=epochs, validation_data=validation_generator, validation_steps=validation_generator.samples//batch_size)
+classifier.save(model_name)
 
 metrics = history.history
 plt.plot(history.epoch, metrics['loss'], metrics['accuracy'])
